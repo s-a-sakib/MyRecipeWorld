@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Recipe</title>
+    <link rel="icon" href="https://i.ibb.co/1smQ4pH/Recipe-bg-removed.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+            body {
+                background-image: url("https://i.ibb.co/1smQ4pH/Recipe-bg-removed.png");
+                background-repeat: no-repeat;
+                background-position: center left;
+                background-attachment: fixed;
+              }
+                    .gradient-custom-2 {
+            /* fallback for old browsers */
+            background: #fccb90;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+            }
+
+            @media (min-width: 768px) {
+            .gradient-form {
+            height: 100vh !important;
+            }
+            }
+            @media (min-width: 769px) {
+            .gradient-custom-2 {
+            border-top-right-radius: .3rem;
+            border-bottom-right-radius: .3rem;
+            }
+            }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">Recipe World</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Find More
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="https://github.com/s-a-sakib">GitHub</a></li>
+              <li><a class="dropdown-item" href="https://www.facebook.com/shahrear.alsakib.7/">Facebook</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="https://t.me/sakib14">Contact Us</a></li>
+            </ul>
+          </li>
+        </ul>
+        <a class="btn btn-outline-success" href="/add_recipe" name="profile" type="submit">Your Profile</a>
+        <form class="d-flex" role="search" method = "post">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" name="search" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+</nav>
+    <section class="h-100 gradient-form">
+        <div class="container mt-5">
+            <br> <br>
+            <form class ="col-6 mx-auto bg-secondary card p-3 shadow-lg" method = "post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <h2>Update Receipe</h2>
+                <hr>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Receipe Name</label>
+                  <input name = "receipe_name" value="{{Receipe.receipe_name}}" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Receipe Discription</label>
+                  <textarea name="receipe_description" class="form-control">{{Receipe.receipe_discription}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Receipe Img</label>
+                    <input name = "receipe_image" value="{{Receipe.receipe_image}}" type="file" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Update Receipe</button>
+              </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+      </section>
+</body>
+</html>
