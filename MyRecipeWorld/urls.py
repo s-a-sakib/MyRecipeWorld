@@ -16,7 +16,6 @@ urlpatterns = [
     path('delete_recipe/<id>/',delete_receipe, name="delete_recipe"),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
