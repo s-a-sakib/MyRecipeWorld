@@ -1,9 +1,14 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from Recipe.views import *
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from rest_framework import routers
+
+router=routers.DefaultRouter()
+router.register('api',MyApiView,basename='api')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +19,7 @@ urlpatterns = [
     path('register/',register_page, name="register"),
     path('update_recipe/<id>/', update_receipe, name="update_recipe"),
     path('delete_recipe/<id>/',delete_receipe, name="delete_recipe"),
+    path('',include(router.urls))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

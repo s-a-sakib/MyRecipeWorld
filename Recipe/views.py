@@ -6,6 +6,12 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
+from rest_framework.views import APIView
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
+from .serializers import RecipeSerializer
 
 @login_required(login_url='/login')
 def add_recipe(request):
@@ -96,6 +102,7 @@ def register_page(request):
 
     return render(request, 'register.html')
 
+@login_required
 def update_receipe(request, id):
     queryset = Receipe.objects.get(id=id)
 
@@ -118,8 +125,19 @@ def update_receipe(request, id):
     context = {'Receipe': queryset}  
     return render(request, 'update_recipe.html', context)
 
+@login_required
 def delete_receipe(request , id):
 
     queryset = Receipe.objects.get(id=id)
     queryset.delete()
     return redirect('add_recipe')
+
+
+
+class MyApiView(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    # queryset=Receipe.objects.all()
+    serializer_class=RecipeSerializer
+    def get_queryset(self):
+        user=self.request.user
+        return Receipe.objects.filter(user=user)
