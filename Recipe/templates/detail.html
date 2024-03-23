@@ -21,7 +21,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="">Home</a>
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,32 +44,15 @@
         </div>
     </nav>
     <br><br><br>
-    <div class="mt-5">
-        <div class="mx-auto col-6">
-          <form action="">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Receipe Search </label>
-            <input name = "search" type="text" class="form-control">
-          </div>
-          <button class="btn btn-primary">Search</button>
-        </form>
-       </div>
-      </div>
       <div class="container mx-auto">
-        <div class="row row-cols-xl-5 row-cols-lg-3 row-cols-md-2 rpw-cols-sm-1">
-          {% for receipe in receipes %}
-          <a href="{% url 'detail_recipe' receipe.id %}" class="card m-2 p-2" style="width: 400px; height: 500px;">
             <div class="d-flex flex-column justify-content-center align-items-center" >
               <img src="/media/{{receipe.receipe_image}}" alt="" style="height: 300px;" width="350px">
               <!-- <th scope="row">{{forloop.counter}} </th> -->
               <h4 class="text-secondary my-2 ">{{receipe.receipe_name}} </h4>
-              <!-- <td> {{receipe.receipe_discription}} </td> -->
+
+              <td> {{receipe.receipe_discription}} </td>
             </div>
-          </a>
-            
-          {% endfor %}
         </div>
-      </div>
-  </div>
+
 </body>
 </html>

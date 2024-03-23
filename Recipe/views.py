@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
+from django.views.generic import DetailView
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -131,6 +132,10 @@ def delete_receipe(request , id):
     queryset = Receipe.objects.get(id=id)
     queryset.delete()
     return redirect('add_recipe')
+
+class DetailReciepi(DetailView):
+    model = Receipe
+    template_name='detail.html'
 
 
 
